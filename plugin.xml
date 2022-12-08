@@ -44,9 +44,9 @@
       <preference name="GradlePluginGoogleServicesEnabled" value="true" />
       <preference name="GradlePluginGoogleServicesVersion" value="4.2.0" />
     </config-file>
-    <preference name="ANDROID_SUPPORT_V13_VERSION" default="27.+"/>
+    <preference name="ANDROIDX_CORE_VERSION" default="1.6.+"/>
     <preference name="FCM_VERSION" default="17.0.+"/>
-    <framework src="com.android.support:support-v13:$ANDROID_SUPPORT_V13_VERSION"/>
+    <framework src="androidx.core:core:$ANDROIDX_CORE_VERSION" />
     <framework src="me.leolin:ShortcutBadger:1.1.17@aar"/>
     <framework src="com.google.firebase:firebase-messaging:$FCM_VERSION"/>
     <dependency id="phonegap-plugin-multidex" version="~1.0.0"/>
