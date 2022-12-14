@@ -1,6 +1,6 @@
 # Change Log
 
-## [v3.3.0](https://github.com/ischemaview/phonegap-plugin-push/tree/v2.2.0) (2022-12-14)
+## [v3.3.0] \[FORKED\](https://github.com/ischemaview/phonegap-plugin-push/tree/v3.3.0) (2022-12-14)
 * Updates for Android API 31+ and cordova-android@11
 
 ## [v2.2.0](https://github.com/phonegap/phonegap-plugin-push/tree/v2.2.0) (2017-10-23)
