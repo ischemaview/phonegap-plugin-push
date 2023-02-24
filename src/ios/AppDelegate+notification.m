@@ -81,20 +81,19 @@ NSString *const pushPluginApplicationDidBecomeActiveNotification = @"pushPluginA
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     NSLog(@"didReceiveNotification with fetchCompletionHandler");
 
-    // app is in the background or inactive, so only call notification callback if this is a silent push
-    if (application.applicationState != UIApplicationStateActive) {
+    // do some convoluted logic to find out if this should be a silent push.
+    long silent = 0;
+    id aps = [userInfo objectForKey:@"aps"];
+    id contentAvailable = [aps objectForKey:@"content-available"];
+    if ([contentAvailable isKindOfClass:[NSString class]] && [contentAvailable isEqualToString:@"1"]) {
+        silent = 1;
+    } else if ([contentAvailable isKindOfClass:[NSNumber class]]) {
+        silent = [contentAvailable integerValue];
+    }
 
-        NSLog(@"app in-active");
-
-        // do some convoluted logic to find out if this should be a silent push.
-        long silent = 0;
-        id aps = [userInfo objectForKey:@"aps"];
-        id contentAvailable = [aps objectForKey:@"content-available"];
-        if ([contentAvailable isKindOfClass:[NSString class]] && [contentAvailable isEqualToString:@"1"]) {
-            silent = 1;
-        } else if ([contentAvailable isKindOfClass:[NSNumber class]]) {
-            silent = [contentAvailable integerValue];
-        }
+    // if app is in the background or inactive or if this is a silent push call notification callback
+    if (application.applicationState != UIApplicationStateActive || silent == 1) {
+        NSLog(@"app in-active or silent push bypass");
 
         if (silent == 1) {
             NSLog(@"this should be a silent push");
@@ -154,7 +153,7 @@ NSString *const pushPluginApplicationDidBecomeActiveNotification = @"pushPluginA
 - (void)pushPluginOnApplicationDidBecomeActive:(NSNotification *)notification {
 
     NSLog(@"active");
-    
+
     NSString *firstLaunchKey = @"firstLaunchKey";
     NSUserDefaults *defaults = [[NSUserDefaults alloc] initWithSuiteName:@"phonegap-plugin-push"];
     if (![defaults boolForKey:firstLaunchKey]) {
