@@ -75,6 +75,7 @@ public class FCMService extends FirebaseMessagingService implements PushConstant
 
     String from = message.getFrom();
     Log.d(LOG_TAG, "onMessage - from: " + from);
+    Log.v(LOG_TAG, "I am the message ---> " + message);
 
     Bundle extras = new Bundle();
 
