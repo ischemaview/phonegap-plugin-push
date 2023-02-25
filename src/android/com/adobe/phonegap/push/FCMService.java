@@ -75,7 +75,7 @@ public class FCMService extends FirebaseMessagingService implements PushConstant
 
     String from = message.getFrom();
     Log.d(LOG_TAG, "onMessage - from: " + from);
-    Log.v(LOG_TAG, "I am the message ---> " + message);
+    Log.d(LOG_TAG, "I am the message ---> " + message);
 
     Bundle extras = new Bundle();
 
@@ -95,10 +95,12 @@ public class FCMService extends FirebaseMessagingService implements PushConstant
 
       SharedPreferences prefs = applicationContext.getSharedPreferences(PushPlugin.COM_ADOBE_PHONEGAP_PUSH,
           Context.MODE_PRIVATE);
-      boolean forceShow = prefs.getBoolean(FORCE_SHOW, true);
+      boolean forceShow = true;
       boolean clearBadge = prefs.getBoolean(CLEAR_BADGE, false);
       String messageKey = prefs.getString(MESSAGE_KEY, MESSAGE);
       String titleKey = prefs.getString(TITLE_KEY, TITLE);
+
+      Log.d(LOG_TAG, "forceShow ---> " + forceShow);
 
       extras = normalizeExtras(applicationContext, extras, messageKey, titleKey);
 
