@@ -196,7 +196,9 @@ NSString *const pushPluginApplicationDidBecomeActiveNotification = @"pushPluginA
     pushHandler.isInline = YES;
     [pushHandler notificationReceived];
 
-    completionHandler(UNNotificationPresentationOptionNone);
+    UNNotificationPresentationOptions presentationOptions = UNNotificationPresentationOptionSound | UNNotificationPresentationOptionBadge | UNNotificationPresentationOptionList | UNNotificationPresentationOptionBanner;
+
+    completionHandler(presentationOptions);
 }
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center
