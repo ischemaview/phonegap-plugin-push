@@ -75,7 +75,6 @@ public class FCMService extends FirebaseMessagingService implements PushConstant
 
     String from = message.getFrom();
     Log.d(LOG_TAG, "onMessage - from: " + from);
-    Log.d(LOG_TAG, "message ---> " + message);
 
     Bundle extras = new Bundle();
 
@@ -99,8 +98,6 @@ public class FCMService extends FirebaseMessagingService implements PushConstant
       boolean clearBadge = prefs.getBoolean(CLEAR_BADGE, false);
       String messageKey = prefs.getString(MESSAGE_KEY, MESSAGE);
       String titleKey = prefs.getString(TITLE_KEY, TITLE);
-
-      Log.d(LOG_TAG, "forceShow ---> " + forceShow);
 
       extras = normalizeExtras(applicationContext, extras, messageKey, titleKey);
 
@@ -347,8 +344,6 @@ public class FCMService extends FirebaseMessagingService implements PushConstant
     if ((message != null && message.length() != 0) || (title != null && title.length() != 0)) {
 
       Log.d(LOG_TAG, "create notification");
-      Log.d(LOG_TAG, "context ---> " + context);
-      Log.d(LOG_TAG, "extras ---> " + extras);
 
       if (title == null || title.isEmpty()) {
         extras.putString(TITLE, getAppName(this));
