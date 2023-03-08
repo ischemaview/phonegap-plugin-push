@@ -1,6 +1,9 @@
 # Change Log
 
-## [v3.3.0]\[FORKED\](https://github.com/ischemaview/phonegap-plugin-push/tree/v3.3.0) (2022-12-14)
+## [v3.4.0](https://github.com/ischemaview/phonegap-plugin-push/tree/v3.4.0) (2023-02-25)
+* Bypass foreground check for silent push notifications [view commit](https://github.com/ischemaview/phonegap-plugin-push/commit/a9b440663e45002ededff4a8dd466a478f068c10)
+
+## [v3.3.0 \[FORKED\]](https://github.com/ischemaview/phonegap-plugin-push/tree/v3.3.0) (2022-12-14)
 * Updates for Android API 31+ and cordova-android@11
 
 ## [v2.2.0](https://github.com/phonegap/phonegap-plugin-push/tree/v2.2.0) (2017-10-23)
