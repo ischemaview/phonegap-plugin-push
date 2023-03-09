@@ -201,7 +201,13 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
     NSLog(@"Push Plugin didReceiveNotificationResponse: actionIdentifier %@, notification: %@", response.actionIdentifier,
           response.notification.request.content.userInfo);
     NSMutableDictionary *userInfo = [response.notification.request.content.userInfo mutableCopy];
-    
+
+    /// The Push plugin pipe events using few identifiers, the default ones are `register` and `notification`.
+    /// Typically, push notification of any kind would go through `notification` events on javascript side.
+    /// However, when `actionCallback` is set, javascript side uses the value of that key for the identifier of the events pipe.
+    /// Existing behavior of tapping notification banner when app backgrounded is nil `actionIdentifier`.
+    /// Unfortunately, when banner is tapped on foreground, iOS sets the `actionIdentifier` to `UNNotificationDefaultActionIdentifier`.
+    /// To replicate that behavior when app is foregrounded, we avoid setting `actionIdentifier` so that it pipes through the `notification` events on javascript side.
     if (![response.actionIdentifier isEqualToString: UNNotificationDefaultActionIdentifier]) {
         [userInfo setObject:response.actionIdentifier forKey:@"actionCallback"];
     }
