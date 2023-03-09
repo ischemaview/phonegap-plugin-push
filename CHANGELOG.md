@@ -1,5 +1,11 @@
 # Change Log
 
+## [v3.5.0](https://github.com/ischemaview/phonegap-plugin-push/tree/v3.5.0) (TBD)
+* Remove handling notification arrival when app is in foreground (no longer showing in-app banner)
+* (iOS) Pipe notifications banner tapped on foreground to `notification` events on javascript side
+* (android) in FCMService, default forceShow to true to instruct OS to display the notification banner when app is in foreground
+* [view commit](https://github.com/ischemaview/phonegap-plugin-push/commit/79b16765b815ab325f40e6f8dce34c1bc6a66ef1)
+
 ## [v3.4.0](https://github.com/ischemaview/phonegap-plugin-push/tree/v3.4.0) (2023-02-25)
 * Bypass foreground check for silent push notifications [view commit](https://github.com/ischemaview/phonegap-plugin-push/commit/a9b440663e45002ededff4a8dd466a478f068c10)
 
